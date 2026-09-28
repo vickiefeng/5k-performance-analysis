@@ -19,7 +19,7 @@ The project was designed as an end-to-end analytical pipeline:
 3. Organize race, event, and result data into a relational SQLite database.
 4. Query and summarize the data using SQL.
 5. Explore age and gender performance patterns in Python.
-6. Compare absolute dinish time with age-graded performance.
+6. Compare absolute finish time with age-graded performance.
 7. Model raw finish time using age, gender, and race-event context.
 
 ## Tech Stack 
@@ -122,7 +122,7 @@ The cleaning pipeline involves:
 - converting age percentages into numeric values
 - preserving missing finish times rather than reconstructing them from rounded pace values
 - treating identified placeholder ages as missing while retaining otherwise usable performance records
-- retaining a non-name result identified while excluding individuals' names, bib numbers, and location fields from the analytical dataset
+- retaining a non-name result identifier while excluding individuals' names, bib numbers, and location fields from the analytical dataset
 
 Missing observations are kept where possible and excluded only from analyses requiring the missing variable.
 
@@ -137,9 +137,9 @@ The database uses primary and foreign keys to represent the relationship between
 
 ### Statistical Analysis
 
-Exploratory analysis examines the distributions of age and raw finish time followed by descriptive comparisons across age groups and gender. Raw finish time is modeled using OLS regression. The modeling progresses from a linear age specification to a quadratic age relationships and finally adds race-event fixed effects to account for systematic differences in average finish times across event editions.
+Exploratory analysis examines the distributions of age and raw finish time followed by descriptive comparisons across age groups and gender. Raw finish time is modeled using OLS regression. The modeling progresses from a linear age specification to a quadratic age relationship and finally adds race-event fixed effects to account for systematic differences in average finish times across event editions.
 
-Because participants within the same event share conditions such as course, date, and race environment, cluster-robust standard errors are calculated at the event level, which adjust statistical uncertainty for potential within-event dependence while the event fixed effects seperately account for differences in average finish times across events. 
+Because participants within the same event share conditions such as course, date, and race environment, cluster-robust standard errors are calculated at the event level, which adjust statistical uncertainty for potential within-event dependence while the event fixed effects separately account for differences in average finish times across events. 
 
 All regression results are interpreted as associations rather than causal effects.
 
@@ -187,11 +187,11 @@ The notebook queries the generated SQLite database and performs the exploratory 
 ## Limitations
 
 - The dataset contains selected RunSignup community races rather than a random or representative sample of all 5k runners.
-- Race coverage is unevent across events and years, and a majority of records from the largest races in the dataset.
+- Race coverage is uneven across events and years, and a majority of records come from the largest races in the dataset.
 - Although the data span multiple race editions, they do not constitute a longitudinal study of individual runners.
 - Event fixed effects account for systematic differences between race editions but do not directly measure factors such as weather, elevation, course difficulty, training history, fitness, or injury.
 - Cluster-robust inference is based on 30 event clusters, so statistical uncertainty should be interpreted cautiously.
-- Age grading is a benchmark-based standarized performance measure and should not be interpreted as a complete measure of running ability.
+- Age grading is a benchmark-based standardized performance measure and should not be interpreted as a complete measure of running ability.
 - Because the analysis is observational, reported relationships should not be interpreted as causal effects.
 
 ## Conclusion
@@ -204,7 +204,7 @@ Rather than identifying a single "best" measure of performance, this analysis sh
 
 ## Data Source & References
 
-Race and participant result data for this project were collected through the RunSignup API. RunSignup provides access to race information, events, participants, and race results. The age-adjusted performance measured used in this analysis is RunSignup's reported Age Percentage, or age grade. RunSignup calculates age-graded results using age-graded standards and factors approved through World Masters Athletics (WMA) and USA Track & Field (USATF).
+Race and participant result data for this project were collected through the RunSignup API. RunSignup provides access to race information, events, participants, and race results. The age-adjusted performance measure used in this analysis is RunSignup's reported Age Percentage, or age grade. RunSignup calculates age-graded results using age-graded standards and factors approved through World Masters Athletics (WMA) and USA Track & Field (USATF).
 
 ### References
 - [RunSignup API Documentation](https://runsignup.com/API)
