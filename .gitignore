@@ -1,0 +1,16 @@
+# API credentials
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Raw data / local database
+data/raw/
+*.db
